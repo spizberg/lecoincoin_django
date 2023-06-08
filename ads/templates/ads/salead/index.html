@@ -1,0 +1,64 @@
+{% extends 'ads/base.html' %}
+{% load static %}
+{% block title %} Bienvenue sur LeCoinCoin {% endblock title %}
+{% block content %}
+
+    <!-- Banner Starts Here -->
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Sales Ads</h4>
+                        <h2>List Sales Ads</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div class="products">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="filters-content">
+                <div class="row grid">
+                    {% for salead in saleads %}
+                    <div class="col-lg-4 col-md-4 all">
+                      <div class="product-item">
+                        <a href="{% url 'ads:salead_show' salead.id %}"><img src="{% static 'ads/images/product_04.jpg' %}" alt=""></a>
+                        <div class="down-content">
+                          <a href="{% url 'ads:salead_show' salead.id %}"><h4>{{ salead.title }}</h4></a>
+                          <h6>${{ salead.price }}</h6>
+                          <p>{{ salead.description|truncatewords:15 }}</p>
+                          <ul class="stars">
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                            <li><i class="fa fa-star"></i></li>
+                          </ul>
+                          <span>{{ salead.date_created }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <ul class="pages">
+                {% for page in pages %}
+              <li {% if page == actual_page %}class="active"{% endif %}><a href="{% url 'ads:salead_index' %}?page={{ page }}">
+                  {{ page }}</a>
+              </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'ads/base.html' %}
+{% load static %}
+{% block title %} Bienvenue sur LeCoinCoin {% endblock title %}
+{% block content %}
+
+    <!-- Banner Starts Here -->
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Consultation</h4>
+                        <h2>{{ salead.title }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div class="products">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8" style="margin: 0 auto;">
+                    <div class="section-heading">
+                        <h4>{{ salead.title }}</h4>
+                        <br>
+                        <strong>{{ salead.price }}</strong>
+                        <br>
+                        <p>{{ salead.description }}</p>
+                    </div>
+                </div>
+                <div class="col-md-12" style="margin: 0 auto;">
+                    <div class="filters-content">
+                        <div class="row grid">
+                            {% for illustration in illustrations %}
+                                <div class="col-lg-4 col-md-4 all">
+                                    <div class="product-item">
+                                        <img src="{% static 'ads/images/illustrations/' %}{{ illustration.filename }}" alt="" style="width: 100%; height: 100%; object-fit: contain;"/>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="pagination pages">
+                    </div>
+                </div>
+            </div>
+        {% if illustrations|length > 0 %}
+            <fieldset class="col-md-12" >
+                <a href="{% url 'ads:salead_edit' salead.id %}"><button type="button" class="btn btn-outline-warning">Editer</button></a>
+                <a href="{% url 'ads:salead_delete' salead.id %}"><button type="button" class="btn btn-outline-danger">Supprimer</button></a>
+            </fieldset>
+        {% endif %}
+        </div>
+    </div>
+    <br>
+
+{% endblock content %}

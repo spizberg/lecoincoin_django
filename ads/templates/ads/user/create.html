@@ -1,0 +1,52 @@
+{% extends 'ads/base.html' %}
+{% load static %}
+{% block title %} Bienvenue sur LeCoinCoin {% endblock title %}
+{% block content %}
+
+    <!-- Banner Starts Here -->
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Users</h4>
+                        <h2>Add User</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div id="create-user" class="content scaffold-edit" role="main">
+        <div class="col-md-8" style="margin: 0 auto;">
+            <div class="section-heading"></div>
+        </div>
+        <div class="col-md-8" style="margin: 0 auto;">
+            <div class="contact-form">
+                <form action="{% url 'ads:user_create' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            {{ form.username.errors }}
+                            {{ form.username }}
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            {{ form.password.errors }}
+                            {{ form.password }}
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-lg-12">
+                            <fieldset>
+                                <button type="submit" id="form-submit" class="filled-button save btn-block">Create</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

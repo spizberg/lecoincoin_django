@@ -1,0 +1,51 @@
+{% extends 'ads/base.html' %}
+{% load static %}
+{% block title %} Bienvenue sur LeCoinCoin {% endblock title %}
+{% block content %}
+
+    <!-- Banner Starts Here -->
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>Users</h4>
+                        <h2>List Users</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div class="products">
+      <div class="container">
+        <div class="row">
+            {% for user in website_users %}
+          <div class="col-md-4">
+            <div class="team-member">
+              <div class="thumb-container">
+                <img src="{% static 'ads/images/team_01.jpg' %}" alt="">
+              </div>
+              <div class="down-content">
+                <h4>{{ user.username }}</h4>
+                <span>{{ user.date_joined }}</span>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing itaque corporis nulla.</p>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+          <div class="col-md-12">
+            <ul class="pages">
+              {% for page in pages %}
+                <li {% if page == actual_page %}class="active"{% endif %}><a href="{% url 'ads:user_index' %}?page={{ page }}">
+                    {{ page }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
